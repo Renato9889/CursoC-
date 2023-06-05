@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using Escola;
 
 namespace Escola{
-    public class Aluno{
+    public class Aluno:Usuario{
         public int Matricula;
-        public string Nome;
-        public decimal Media;
+        public decimal Media {get;private set;} //Encapsulamento
         private List<Materia> Materias;
+
+        public Aluno():base(){
+            Materias = new List<Materia>();
+        }
+        public Aluno(int mat, string nome ):this(){
+            Nome = nome;
+            Matricula = mat;
+        }
 
         public void CalcularMedia(decimal nota1, decimal nota2, decimal nota3){
             decimal total = nota1 + nota2 + nota3;
@@ -26,6 +33,10 @@ namespace Escola{
 
             Materias.Add(materia);
             return "Matéria adicionada com sucesso";
+        }
+
+        public override void Logar(){
+            Console.WriteLine("O aluno está logado");
         }
     }
 }
